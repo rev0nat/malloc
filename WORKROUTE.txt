@@ -1,0 +1,8 @@
+1. Malloc agit comme couche d'opti sur l'appel systeme mmap. Il préalloue plus de mémoire que nécessaire (heap) pour éviter les appels systèmes répétés.
+2. Quand on fait appel à lui, malloc va parcourir une liste de freed heaps pour en trouver une suffisament grande pour combler l'attente du malloc.
+3. Plusieurs soluces pour trouver la meilleure place (best-fit; worse-fit; first-fit...)
+
+
+Problematiques
+1. Malloc parcourt la freelist pour trouver un emplacement pour se garer.
+2. Choix de la place important dans le process, on va choisir best-fit (prends la place la plus proche supérieure de la voiture, mais du coup laisse plein de minis places inutilisables) ou next-fit (agit comme first-fit -dès qu'une place est assez grande on se gare-, et laisse des gaps de taille moyenne, diff de first-fit c'est que ça va chercher une place APRES celle trouvée, contrairement à first qui recommence au début.	
